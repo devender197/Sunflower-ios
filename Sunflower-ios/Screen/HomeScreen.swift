@@ -7,89 +7,37 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct HomeScreen: View {
     
     @State private var selectedTabIndex: Int = 0
+    @StateObject private var viewModel = PlantViewModel()
     
     var body: some View {
-        VStack {
-            Text("Sunflower")
-                .font(.largeTitle)
-                .padding(.top, 20)
-                .padding(.bottom, 20)
-            
-            HStack() {
-                VStack{
-                    Button(
-                        action: {
-                            selectedTabIndex = 0
-                        },
-                        label: {
-                            VStack {
-                                Image(systemName: "tree.fill")
-                                Text("My garden")
-                            }
-                        }
-                    )
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(
-                        selectedTabIndex == 0 ? Color.green : Color.gray
-                    )
-                }
+        NavigationStack {
+            VStack {
+                Text("Sunflower")
+                    .font(.largeTitle)
+                    .padding(.top, 20)
+                    .padding(.bottom, 20)
                 
-                VStack {
-                    Button(
-                        action: {
-                            selectedTabIndex = 1
-                        },
-                        label: {
-                            VStack {
-                                Image(systemName: "leaf.fill")
-                                Text("Plant list")
-                            }
-                        }
-                    )
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(
-                        selectedTabIndex == 1 ? Color.green : Color.gray
-                    )
-                }
-            }
-            
-            GeometryReader { geo in
-                let tabWidth = geo.size.width / 2
-                Rectangle()
-                    .fill(Color.green)
-                    .frame(width: tabWidth, height: 5)
-                    .offset(x: CGFloat(selectedTabIndex) * tabWidth)
-                    .animation(.easeInOut(duration: 0.3), value: selectedTabIndex)
-            }
-            .frame(height: 5)
-            
-            VStack{
-                if selectedTabIndex == 0 {
-                    VStack{
-                        Text("Your garden is empty")
-                            .font(.title)
-                            .padding(.top, 20)
-                            .padding(.bottom, 20)
-                        
-                        Button("Add plant"){
-                            
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape(.capsule)
-                        .tint(.green)
-                        .clipShape(Shape.)
-                        
+                CustomTopTabbedView(
+                    onSelect: { selectedIndex in
+                        selectedTabIndex = selectedIndex
                     }
-                } else {
-                    Text("Plant list")
+                )
+                
+                VStack{
+                    if selectedTabIndex == 0 {
+                        Planted()
+                    } else {
+                        PlantList(viewModel: viewModel)
+                    }
                 }
+                .frame(maxHeight: .infinity)
             }
-            .frame(maxHeight: .infinity)
-        }
+        }.modelContainer(for: Plant.self)
     }
 }
 

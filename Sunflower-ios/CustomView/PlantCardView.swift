@@ -8,42 +8,46 @@
 import Foundation
 import SwiftUI
 
-
-
 struct PlantCardView: View {
-    var plantImageUrl: String
-    var plantText: String
+    let plant: Plant
     var body: some View {
-        ZStack {
-            AsyncImage(url: URL(string: plantImageUrl)!) { image in
-                image.image?
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 300, height: 300)
-                    .clipped()
-                   
-            }
-            
-            VStack {
-                Spacer()
-                ZStack {
-                    Color.green
-                    Text(plantText)
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }.frame(maxWidth: 300, maxHeight: 100)
-            }
-            
+        NavigationLink(destination: PlantDetailScreen(plant: plant)) {
+            ZStack {
+                AsyncImage(url: URL(string: plant.imageUrl)!) { image in
+                    image.image?
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 170, height: 170)
+                        .clipped()
+                    
+                }
+                
+                VStack {
+                    Spacer()
+                    ZStack {
+                        Color.green
+                        Text(plant.name)
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }.frame(maxWidth: 170, maxHeight: 70)
+                }
+                
+            }.frame(width: 170, height: 170)
+            .cornerRadius(10)
         }
-        .frame(width: 300, height: 300)
-        .cornerRadius(10)
+        
     }
 }
 
 
 #Preview {
     PlantCardView(
-        plantImageUrl: "data:image/jpeg;base64,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",
-        plantText: "Apple"
+        plant: Plant(
+            plantId: "solanum-melongena",
+            name: "Eggplant",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Eggplant_display.JPG",
+            plantDetail: "Eggplant (US), aubergine (UK), or brinjal (South Asia and South Africa) is a plant species in the nightshade family Solanaceae, Solanum melongena, grown for its often purple edible fruit.<br><br>The spongy, absorbent fruit of the plant is widely used in cooking in many different cuisines, and is often considered a vegetable, even though it is a berry by botanical definition. As a member of the genus Solanum, it is related to the tomato and the potato. Like the tomato, its skin and seeds can be eaten, but, like the potato, it is not advisable to eat it raw. Eggplant supplies low contents of macronutrients and micronutrients. The capability of the fruit to absorb oils and flavors into its flesh through cooking is well known in the culinary arts.<br><br>It was originally domesticated from the wild nightshade species thorn or bitter apple, S. incanum, probably with two independent domestications: one in South Asia, and one in East Asia.<br><br>(From <a href=\"https://en.wikipedia.org/wiki/Eggplant\">Wikipedia</a>)",
+            wateringFrequency: 3
+        )
     )
 }

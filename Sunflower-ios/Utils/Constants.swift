@@ -6,3 +6,6 @@
 //
 
 import Foundation
+
+
+let API_BASE_URL = "https://api.unsplash.com/"

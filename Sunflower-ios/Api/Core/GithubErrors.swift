@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GitHubErrors: Error {
+enum ApiErrors: Error {
     case invalidUrl
     case invalidResponse
     case invalidData
