@@ -8,6 +8,12 @@ The Sunflower iOS app is a gardening app that helps you identify plants, learn h
 
 One of the key aspects of this project is its architectural similarity to the original Android Sunflower app, which uses Jetpack Compose for its UI. This iOS version demonstrates how the declarative UI paradigm of SwiftUI can be used to create a user experience that is both beautiful and highly performant, much like its Compose UI counterpart. This makes it an excellent case study for developers interested in cross-platform development or those transitioning from Android to iOS development.
 
+## Screenshots
+
+| No planted added |  Planted list |  List of plants available | Detail page | 
+|----------------|---------------|---------------|---------------| 
+|<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-15 at 18 58 18" src="https://github.com/user-attachments/assets/ad610c66-c868-4413-8d0c-0009a97ff03b" />|<img width="1179" height="2556" alt="Simulator Screenshot - iPhone 16 - 2025-07-15 at 18 55 47" src="https://github.com/user-attachments/assets/cef142f8-400b-42bc-8dce-ec02d14e0faf" />|<img width="1179" height="2556" alt="Simulator Screenshot - iPhone 16 - 2025-07-15 at 18 55 52" src="https://github.com/user-attachments/assets/0de58a2e-fb80-47a0-891d-df1387626e1c" />|<img width="1179" height="2556" alt="Simulator Screenshot - iPhone 16 - 2025-07-15 at 18 55 55" src="https://github.com/user-attachments/assets/8e58edf5-f177-4573-9e3b-f3d2894f0c3c" />|
+
 ## Core Technologies
 
 * **SwiftUI:** The entire user interface is built using Apple's modern, declarative UI framework.
